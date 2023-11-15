@@ -1,0 +1,46 @@
+.generalSection {
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+
+}
+.titleMouth {
+    text-align: center;
+}
+.controlSectionThumb {
+    display: flex;
+    justify-content: center;
+}
+.controlSection {
+
+}
+.nameWeekThumb {
+    display: flex;
+    border: 1px solid black;
+    gap: 10px;
+    margin-top: 30px;
+}
+.nameWeek {
+    flex-basis: calc(100% / 9);
+    border: 1px solid black;
+}
+.daySectionThumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.daySection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: calc(100% / 9);
+    border: 1px solid black;
+}
+.currentDaySection {
+    composes: daySection;
+    background-color: yellow;
+}
+.daySectionND {
+    composes: daySection;
+    background-color: slategray;
+}

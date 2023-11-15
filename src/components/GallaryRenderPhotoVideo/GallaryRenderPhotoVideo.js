@@ -1,47 +1,51 @@
 import {useSelector, useDispatch} from "react-redux";
-import {selectJWTStore, selectPhotoData, selectVideoData, selectCounterPhoto, selectCounterVideo} from "../Redux/selectors";
-import {useContext, useEffect, useRef, useState} from "react";
-import {verificationToken, getMorePhoto, getMoreMovie} from "../Redux/operation";
-import {AddPhoto} from "./AddPhoto";
-import {AddVideo} from "./AddVideo";
+import {selectJWTStore, selectPhotoData, selectVideoData, selectCounterPhoto, selectCounterVideo} from "../../Redux/selectors";
+import {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
+import {verificationToken, getMorePhoto, getMoreMovie} from "../../Redux/operation";
+import {AddPhoto} from "../AddPhoto/AddPhoto";
+import {AddVideo} from "../AddVideo/AddVideo";
 import {toast} from "react-toastify";
-import {FilterForMovie} from "./FilterForMovie";
-import {FilterForPhoto} from "./FilterForPhoto";
-import {YTplayer} from "./YTplayer";
-import {YTplayerShorts} from "./YTplayerShorts";
-import {fetchPost} from "../utils/fetchPost";
-import {UpdatePageContext} from "../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
+import {FilterForMovie} from "../FilterForMovie/FilterForMovie";
+import {FilterForPhoto} from "../FilterForPhoto/FilterForPhoto";
+import {YTplayer} from "../YTplayer/YTplayer";
+import {YTplayerShorts} from "../YTplayerShorts/YTplayerShorts";
+import {fetchPost} from "../../utils/fetchPost";
+import {fnSetParams, fnSetParamsVideo, fnCount} from "../../utils/secondaryFunctions";
+import {UpdatePageContext} from "../../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
+// import {Card} from "../Card/Card";
+import styled from "@emotion/styled";
+import {CardImgTestMUI} from "../CardImgTestMUI/CardImgTestMUI";
+import {useScrollPosition} from "../../testComponents/InfinityScroll/InfinityScroll";
 
+const WrapperList = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
-const fnCount = (quantityAll, setQuantityDownloads, countPhotoRender) => {
-    setQuantityDownloads(quantityAll - countPhotoRender);
-}
-
-const fnSetParams = (page, dispatch, changeRef) => {
-    const queryString = window.location.search;
-    let url = `http://localhost:3001/photoList?pageQ=${page}`;
-    if (queryString) {
-         url = `http://localhost:3001/searchPhoto${queryString}&pageQ=${page}`;
-    }
-    dispatch(getMorePhoto(url));
-    changeRef.current = true;
-}
-
-const fnSetParamsVideo = (page, dispatch, changeRef) => {
-    const queryString = window.location.search;
-    let url = `http:localhost:3001/getVideoUrl?pageQ=${page}`;
-    if (queryString) {
-        url = `http://localhost:3001/searchMovie${queryString}&pageQ=${page}`;
-    }
-    dispatch(getMoreMovie(url));
-    changeRef.current = true;
-}
+const List = styled.ul`
+    list-style: none;
+    width: 350px;
+    height: 500px;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+    //align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    padding: 0;
+    //padding: 10px;
+    margin-top: 40px;
+`
 
 export const GalleryRenderPhotoVideo = (
     {fileDataForRender: {
         isOpenPhoto,
         isOpenVideo
-    }}) => {
+    }}
+) => {
     const setIsUpdateFile = useContext(UpdatePageContext);
     const [quantityDownloaded, setQuantityDownloaded] = useState(0);
     const counterPhotoAll = useSelector(selectCounterPhoto); // всего: 30
@@ -51,6 +55,15 @@ export const GalleryRenderPhotoVideo = (
     const video = useSelector(selectVideoData);
     const dispatch = useDispatch();
     const isUploading = useRef(true);
+    const heightList = useRef();
+    const posScroll = useScrollPosition(heightList);
+    const [testLayout, setTestLayout] = useState(0);
+
+
+    useLayoutEffect(() => {
+        const height = heightList.current.offsetHeight;
+        console.log('height', height);
+    }, [photo.photo])
 
 
     useEffect(() => {
@@ -58,11 +71,22 @@ export const GalleryRenderPhotoVideo = (
             fnCount(counterPhotoAll, setQuantityDownloaded, photo.photo.length);
             isUploading.current = false;
         }
+    }, [isUploading, photo.photo]);
+
+    useEffect(() => {
         if (video.urlList && isUploading) {
             fnCount(counterVideoAll, setQuantityDownloaded, video.urlList.length);
             isUploading.current = false
         }
-    }, [isUploading, photo.photo, video.urlList]);
+    }, [isUploading, video.urlList]);
+
+
+    useEffect(() => {
+        if (jwt) {
+            dispatch(verificationToken({jwt}));
+        }
+    }, []);
+
 
     const fnDeletePhotoVideo = async (url, id, jwt) => {
         try{
@@ -74,31 +98,27 @@ export const GalleryRenderPhotoVideo = (
         }
     }
 
-    useEffect(() => {
-        if (jwt) {
-            dispatch(verificationToken({jwt}));
-        }
-    }, []);
-
     return (
         <div>
             {isOpenPhoto &&
-                <div>
+                <WrapperList>
                     <FilterForPhoto/>
                     {verificationJWT && <AddPhoto/>}
-                    <ul>
+                    <List ref={heightList}>
                         {photo?.photo?.map(ele => {
                             const {id, url_photo: urlPhoto, name_photo: namePhoto, date_upload_video: dateUploadPhoto} = ele;
                             return (
-                                <li key={id}>
-                                    <img src={photo.path + urlPhoto} alt={namePhoto} style={{width: '300px', height: '300px'}}/>
-                                    {verificationJWT && <button onClick={() => fnDeletePhotoVideo('http://localhost:3001/deletePhoto', id, jwt)}>удалить</button>}
-                                </li>
+                                // <li key={id}>
+                                //     <img src={photo.path + urlPhoto} alt={namePhoto} style={{width: '300px', height: '300px'}}/>
+                                //     {verificationJWT && <button onClick={() => fnDeletePhotoVideo('http://localhost:3001/deletePhoto', id, jwt)}>удалить</button>}
+                                // </li>
+                                // <Card key={ele.id} {...ele} path={photo.path}/>
+                                <CardImgTestMUI key={id} {...ele} path={photo.path}/>
                             )
                         })}
-                    </ul>
+                    </List>
                     {quantityDownloaded > 0 && <button onClick={() => fnSetParams(photo.photo.length, dispatch, isUploading)}>показать больше</button>}
-                </div>
+                </WrapperList>
             }
 
             {isOpenVideo &&

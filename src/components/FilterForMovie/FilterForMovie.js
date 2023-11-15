@@ -1,8 +1,8 @@
 import {useContext, useState, useEffect} from "react";
-import {UpdatePageContext} from "../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
+import {UpdatePageContext} from "../../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
 import {useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {getVideoUrl} from "../Redux/operation";
+import {getVideoUrl} from "../../Redux/operation";
 
 
 const serializeFormQuery = (fnSearchParams, ...rest) => {

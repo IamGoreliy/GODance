@@ -1,5 +1,5 @@
-export const uploadPhotoFn = async (formData) => {
-    const response = await fetch('http://localhost:3001/addPhotoTest', {
+export const uploadPhotoAndVideoFn = async (url, formData) => {
+    const response = await fetch(url, {
         method: 'POST',
         body: formData,
     });

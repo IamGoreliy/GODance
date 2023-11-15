@@ -1,6 +1,6 @@
-import {uploadPhotoAndVideoFn} from "../utils/uploadPhotoAndVideoFn";
+import {uploadPhotoAndVideoFn} from "../../utils/uploadPhotoAndVideoFn";
 import {useContext} from "react";
-import {UpdatePageContext} from "../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
+import {UpdatePageContext} from "../../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
 import {toast} from "react-toastify";
 
 export const AddPhoto = ({statusUpload: setResulUpload}) => {

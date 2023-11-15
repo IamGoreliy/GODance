@@ -1,0 +1,61 @@
+.generalSection {
+
+}
+.buttonSearchPanel {
+    border: 0;
+    position: absolute;
+    background-color: transparent;
+    margin-top: 20px;
+}
+.formSearch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 100%;
+    padding: 15px 15px;
+    box-sizing: border-box;
+    background-color: lightpink;
+    z-index: 1;
+    transform: translateY(-250px);
+    transition: 1000ms transform linear ;
+}
+.formSearchOpen {
+    composes: formSearch;
+    transform: translateY(0);
+}
+.searchForNameLabel {
+    width: 100%;
+}
+.searchForName {
+    display: block;
+    width: 90%;
+    height: 50px;
+    border: 0;
+    border-radius: 20px;
+    padding-left: 30px;
+}
+.dateWrapper {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.date {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    border-radius: 10px;
+}
+
+.testDiv {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+}
+
+

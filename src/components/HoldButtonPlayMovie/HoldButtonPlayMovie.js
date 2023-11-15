@@ -1,4 +1,6 @@
-import styler from "../../components/PopularDestinationsSection/PopularDestinationsSection.module.css";
+import styler from "../PopularDestinationsSection/PopularDestinationsSection.module.css";
+import {ReactSVG} from "react-svg";
+import holdButtonIcon from '../../image/image/svg/one-finger-double-tap.svg';
 
 export const HoldButtonPlayMovie = ({checkIsHold: {setIsHoldButton, setWhatCategoryIsHold, id}, children}) => {
     return (
@@ -16,7 +18,7 @@ export const HoldButtonPlayMovie = ({checkIsHold: {setIsHoldButton, setWhatCateg
                 }}
                 className={styler.btnTouch}
         >
-            {children}
+           <ReactSVG className={styler.iconForButtonHold} src={holdButtonIcon}/>
         </button>
     )
 }

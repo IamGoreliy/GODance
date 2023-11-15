@@ -3,6 +3,7 @@ import {useGetStyleMovie} from '../../../utils/customHook';
 import {useSelector} from "react-redux";
 import {selectYTPlayer} from "../../../utils/selectYTPlayer";
 import {selectCounterVideo, selectVideo} from "../../../Redux/selectors";
+import styler from './StyleDancePage.module.css';
 
 export const StyleDancePage = ({dependence: {title}}) => {
 
@@ -12,16 +13,16 @@ export const StyleDancePage = ({dependence: {title}}) => {
 
 
     return (
-        <section>
+        <section className={styler.generalSection}>
             <NavLink to='/'><button>назад</button></NavLink>
-            <h1>{title}</h1>
+            <h1 className={styler.title}>{title}</h1>
             <div>
-                <ul>
+                <ul className={styler.list}>
                 {video.map(ele => {
                     const {id, name_video: nameVideo, url_video: urlVideo} = ele;
 
                     return (
-                        <li key={id}>
+                        <li key={id} className={styler.item}>
                             {selectYTPlayer(urlVideo)}
                         </li>
                     )

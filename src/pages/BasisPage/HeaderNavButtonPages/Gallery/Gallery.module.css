@@ -1,0 +1,58 @@
+.generalSection {
+    min-height: 75vh;
+}
+.title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 48px;
+    margin: 0;
+}
+.buttonBack {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    border: 0;
+    background-color: transparent;
+    width: 100px;
+    height: 70px;
+}
+.navigationWrapper{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.buttonPhoto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid deepskyblue;
+    width: 160px;
+    border-radius: 20px;
+
+}
+.buttonPhotoActive {
+    composes: buttonPhoto;
+    box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+    -webkit-box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+    -moz-box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+}
+.titleButtonPhoto {
+    color: deepskyblue;
+}
+.buttonVideo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid lightpink;
+    width: 160px;
+    border-radius: 20px;
+}
+.buttonVideoActive {
+    composes: buttonVideo;
+    box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+    -webkit-box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+    -moz-box-shadow: 10px 7px 11px 0px rgba(0,0,0,0.75) inset;
+}
+.titleButtonVideo {
+    color: lightpink;
+}

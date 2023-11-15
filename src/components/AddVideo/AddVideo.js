@@ -1,7 +1,7 @@
 import {useContext, useEffect, useState} from "react";
-import {uploadPhotoAndVideoFn} from "../utils/uploadPhotoAndVideoFn";
+import {uploadPhotoAndVideoFn} from "../../utils/uploadPhotoAndVideoFn";
 import {toast} from "react-toastify";
-import {UpdatePageContext} from "../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
+import {UpdatePageContext} from "../../pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
 
 export const AddVideo = () => {
     const setIsUpdateFile = useContext(UpdatePageContext)

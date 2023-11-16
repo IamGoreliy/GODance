@@ -1,6 +1,7 @@
 import {createSelector} from "@reduxjs/toolkit";
 
 export const selectJWTStore = state => state.authStore;
+export const selectPhotoStatus = state => state.photoStore.isLoading;
 export const selectPhotoData = state => state.photoStore.photoData;
 export const selectCounterPhoto = state => state.photoStore.photoData.counter;
 export const selectVideoData = state => state.videoStore;

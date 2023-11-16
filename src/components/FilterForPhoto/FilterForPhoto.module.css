@@ -4,6 +4,7 @@
 .buttonSearchPanel {
     border: 0;
     position: absolute;
+    left: 20px;
     background-color: transparent;
     margin-top: 20px;
 }

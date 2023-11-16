@@ -5,15 +5,15 @@ const myRef = forwardRef((props,myRef) => {
             <ul ref={myRef}>{props}</ul>
         )
 })
-export const useScrollPosition = (ref) => {
+export const useScrollPosition = () => {
     const [scrollPos, setScrollPos] = useState(0);
 
-    console.log(myRef)
 
-    const handlePositionScroll = () => {
-        const position = window.scrollY;
-        setScrollPos(position);
+    const handlePositionScroll = (e) => {
+        const height = window.scrollY;
+        setScrollPos(height)
     }
+
 
     useEffect(() => {
         window.addEventListener('scroll', handlePositionScroll);

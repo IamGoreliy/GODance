@@ -94,7 +94,7 @@ const ListBtn = styled(props => {
 
 
 export const CardImgTestMUI = (props) => {
-    const {id, url_photo: urlPhoto, name_photo: namePhoto, date_upload_video: dateUploadPhoto, path} = props;
+    const {id, url_photo: urlPhoto, name_photo: namePhoto, date_upload_video: dateUploadPhoto, path, fnDelete, jwt} = props;
     const [expanded, setExpanded] = useState(false);
     const [isActionBtn, setIsActionBtn] = useState(false);
 
@@ -136,7 +136,7 @@ export const CardImgTestMUI = (props) => {
             <ActionBtnMenu isOpenMenu={isActionBtn}>
                 <ListBtn><EditIcon/></ListBtn>
                 <ListBtn><ShareIcon/></ListBtn>
-                <ListBtn><DeleteIcon/></ListBtn>
+                <ListBtn onClick={() => {fnDelete('http://localhost:3001/deletePhoto', id, jwt)}}><DeleteIcon/></ListBtn>
             </ActionBtnMenu>
             <CardContent>
                 <Typography variant="body2" color="text.secondary">

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {selectJWTStore} from "../../Redux/selectors";
-import {auth} from "../../Redux/operation";
+import {selectJWTStore} from "../../../Redux/selectors";
+import {auth} from "../../../Redux/operation";
 
 
 export const LoginAdmin = () => {

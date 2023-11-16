@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "./App";
-import {LoginAdmin} from "./pages/loginAdmin/LoginAdmin";
+import {LoginAdmin} from "./pages/AdminPage/LoginAdmin/LoginAdmin";
 import {HomePage} from "./pages/HomePage/HomePage";
 import {Gallery} from "./pages/BasisPage/HeaderNavButtonPages/Gallery/Gallery";
 import {CalendarPage} from "./pages/BasisPage/HeaderNavButtonPages/CalendarPage/CalendarPage";
@@ -20,6 +20,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/oksanaAdmin',
                 element: <LoginAdmin/>,
+            },
+            {
+                path: '/adminCabinet',
+                element:
             },
             {
                 path: '/gallery',
